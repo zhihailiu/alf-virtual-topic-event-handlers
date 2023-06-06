@@ -1,10 +1,24 @@
-# Alfresco Virtual Topic Java Event API - Plain Event Handlers Sample Application
+# Alfresco Java SDK Event Handler Application as Competing Consumers
 
-Sample application to demonstrate the Virtual Topic Java plain handlers approach to use the Alfresco Java Event API.
+The "competing consumers" issue with Alfresco Java SDK Event API is best described [here](https://github.com/Alfresco/alfresco-java-sdk/issues/58) by Jeff Potts.
 
-It is a Spring Boot application that makes use of the [Alfresco Java Event API Spring Boot Starter](../../alfresco-java-event-api/README.md#spring-boot-custom-starter)
-to define sample [```EventHandler```](../../alfresco-java-event-api/alfresco-java-event-api-handling/src/main/java/org/alfresco/event/sdk/handling/handler/EventHandler.java)'s
-that log information about the handled events.
+Let's say I create an application that generates a thumbnail after a PDF document is uploaded. I deploy more than one instance of the application for high availablity and better performance. Upon a PDF document upload, EACH of the applications will receive an event then create thumbnail, while I really just need one of them to do that. The reason is that Alfresco event API is a publish/subscribe model based on ActiveMQ Topic.
+
+This sample application demonstrates how to implement competing consumers using ActiveMQ Virutal Topic. In a nut-shell, it consists of
+1. Set Virtual Topic endpoint in Alfresco repository/ACS
+
+```
+repo.event2.topic.endpoint=amqp:topic:VirtualTopic.events2
+```
+
+2. Set matching queue name in Event API application
+```
+alfresco.events.queueName=Consumer.FOO.VirtualTopic.events2
+```
+These names follow ActiveMQ virtual topic and its consumer queue naming conventions.
+
+3. Override Topic with Queue in Event API application
+This switches event producer/consumer from Topic (one to many) to Queue (one to one).
 
 ## Usage
 
