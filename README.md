@@ -25,7 +25,8 @@ This switches event producer/consumer from Topic (one to many) to Queue (one to 
 * [How does a Queue compare to a Topic](https://activemq.apache.org/how-does-a-queue-compare-to-a-topic)
 * [Virtual Destinations](https://activemq.apache.org/virtual-destinations)
 * [Understanding Virtual Destinations in ActiveMQ with an Example](https://itnext.io/understanding-virtual-destinations-in-activemq-with-an-example-cc814e8613d7)
-
+* [How to Use Docker Compose to Run Multiple Instances of a Service in Development](https://pspdfkit.com/blog/2018/how-to-use-docker-compose-to-run-multiple-instances-of-a-service-in-development/)
+  
 ## Usage
 
 ### Pre-Requisites
