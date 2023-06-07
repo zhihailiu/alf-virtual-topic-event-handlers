@@ -2,23 +2,29 @@
 
 The "competing consumers" issue with Alfresco Java SDK Event API is best described [here](https://github.com/Alfresco/alfresco-java-sdk/issues/58) by Jeff Potts.
 
-Let's say I create an application that generates a thumbnail after a PDF document is uploaded. I deploy more than one instance of the application for high availablity and better performance. Upon a PDF document upload, EACH of the applications will receive an event then create thumbnail, while I really just need one of them to do that. The reason is that Alfresco event API is a publish/subscribe model based on ActiveMQ Topic.
+Let's say I create an application that generates a thumbnail after a PDF document is uploaded. I deploy three instances of the application for high availablity and better performance. Upon a PDF document upload, each of the three instances will receive an event then create thumbnail, while I really just need one of them to do that. The reason is that Alfresco Event API uses ActiveMQ Topic behind the scene.
 
 This sample application demonstrates how to implement competing consumers using ActiveMQ Virutal Topic. In a nut-shell, it consists of
 1. Set Virtual Topic endpoint in Alfresco repository/ACS
 
 ```
-repo.event2.topic.endpoint=amqp:topic:VirtualTopic.events2
+repo.event2.topic.endpoint=amqp:topic:VirtualTopic.FOO
 ```
+Virtual Topic naming convention is "VirtualTopic.<topic name>".
 
 2. Set matching queue name in Event API application
 ```
-alfresco.events.queueName=Consumer.FOO.VirtualTopic.events2
+alfresco.events.queueName=Consumer.BAR.VirtualTopic.FOO
 ```
-These names follow ActiveMQ virtual topic and its consumer queue naming conventions.
+Consumer Queue of the Virtual Topic has the naming convention "Consumer.<consumer name>.VirtutalTopic.<topic name>".
 
 3. Override Topic with Queue in Event API application
 This switches event producer/consumer from Topic (one to many) to Queue (one to one).
+
+### References
+* [How does a Queue compare to a Topic](https://activemq.apache.org/how-does-a-queue-compare-to-a-topic)
+* [Virtual Destinations](https://activemq.apache.org/virtual-destinations)
+* [Understanding Virtual Destinations in ActiveMQ with an Example](https://itnext.io/understanding-virtual-destinations-in-activemq-with-an-example-cc814e8613d7)
 
 ## Usage
 
