@@ -10,7 +10,7 @@ version: "2"
 
 services:
   alf-virtual-topic-event-handlers:
-    image: alf-virtual-topic-event-handlers:development
+    image: alf-virtual-topic-event-handlers:latest
     build:
       context: .
 
