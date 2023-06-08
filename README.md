@@ -72,6 +72,15 @@ easily. This script will require execution permissions, so add it if it hasn't.
 $ chmod +x run.sh
 ```
 
+## How to Build
+
+To build docker image for alf-virtual-topic-event-handlers
+
+```bash
+$ mvn clean install
+$ docker build -t alf-virtual-topic-event-handlers .
+```
+  
 See [```run.sh```](run.sh) or [```run.bat```](run.bat) if you would like to know how each function exactly works.
 
 #### How To Run
