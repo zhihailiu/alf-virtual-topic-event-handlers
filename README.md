@@ -4,9 +4,10 @@ The "competing consumers" issue with Alfresco Java SDK Event API can be found [h
 
 Let's say I create an application that generates a thumbnail after a PDF document is uploaded. I deploy three instances of the application for high availablity and better performance. Upon a PDF document upload, each of the three instances will receive an event to create thumbnail, while I only need one of them to do that. This is because Alfresco Event API uses ActiveMQ Topic behind the scene.
 
-This sample application demonstrates how to implement competing consumers using ActiveMQ Virutal Topic. In a nut-shell, it consists of
-1. Set Virtual Topic endpoint in Alfresco repository/ACS
+This sample application demonstrates how to implement competing consumers using ActiveMQ Virutal Topic.
+1. On Alfresco/ACS side
 
+Use Virtual Topic for the endpoint configuration
 ```
 repo.event2.topic.endpoint=amqp:topic:VirtualTopic.FOO
 ```
@@ -15,7 +16,9 @@ Virtual Topic naming convention is
 VirtualTopic.<topic name>
 ```
 
-2. Set matching queue name in Event API application
+2. In the application
+
+Switch Topic to Queue in code. Use a configuration to let application(s) listen to the same Queue that the Virtual Topic writes to.
 ```
 alfresco.events.queueName=Consumer.BAR.VirtualTopic.FOO
 ```
@@ -23,9 +26,6 @@ Consumer Queue of the Virtual Topic has the naming convention
 ```
 Consumer.<consumer name>.VirtualTopic.<topic name>
 ```
-
-3. Override Topic with Queue in Event API application
-This switches event producer/consumer from Topic (one to many) to Queue (one to one).
 
 ### References
 * [How does a Queue compare to a Topic](https://activemq.apache.org/how-does-a-queue-compare-to-a-topic)
