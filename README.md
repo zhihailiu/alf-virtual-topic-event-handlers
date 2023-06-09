@@ -10,13 +10,19 @@ This sample application demonstrates how to implement competing consumers using 
 ```
 repo.event2.topic.endpoint=amqp:topic:VirtualTopic.FOO
 ```
-Virtual Topic naming convention is "VirtualTopic.<topic name>".
+Virtual Topic naming convention is 
+```
+VirtualTopic.<topic name>"
+```
 
 2. Set matching queue name in Event API application
 ```
 alfresco.events.queueName=Consumer.BAR.VirtualTopic.FOO
 ```
-Consumer Queue of the Virtual Topic has the naming convention "Consumer.<consumer name>.VirtutalTopic.<topic name>".
+Consumer Queue of the Virtual Topic has the naming convention 
+```
+Consumer.<consumer name>.VirtutalTopic.<topic name>
+```
 
 3. Override Topic with Queue in Event API application
 This switches event producer/consumer from Topic (one to many) to Queue (one to one).
