@@ -12,7 +12,7 @@ repo.event2.topic.endpoint=amqp:topic:VirtualTopic.FOO
 ```
 Virtual Topic naming convention is 
 ```
-VirtualTopic.<topic name>"
+VirtualTopic.<topic name>
 ```
 
 2. Set matching queue name in Event API application
