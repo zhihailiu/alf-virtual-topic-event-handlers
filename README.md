@@ -21,7 +21,7 @@ alfresco.events.queueName=Consumer.BAR.VirtualTopic.FOO
 ```
 Consumer Queue of the Virtual Topic has the naming convention 
 ```
-Consumer.<consumer name>.VirtutalTopic.<topic name>
+Consumer.<consumer name>.VirtualTopic.<topic name>
 ```
 
 3. Override Topic with Queue in Event API application
