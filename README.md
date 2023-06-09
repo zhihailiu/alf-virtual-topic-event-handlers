@@ -1,6 +1,6 @@
 # Alfresco Java SDK Event Handler Application as Competing Consumers
 
-The "competing consumers" issue with Alfresco Java SDK Event API is best described [here](https://github.com/Alfresco/alfresco-java-sdk/issues/58) by Jeff Potts.
+The "competing consumers" issue with Alfresco Java SDK Event API can be found [here](https://github.com/Alfresco/alfresco-java-sdk/issues/58).
 
 Let's say I create an application that generates a thumbnail after a PDF document is uploaded. I deploy three instances of the application for high availablity and better performance. Upon a PDF document upload, each of the three instances will receive an event then create thumbnail, while I really just need one of them to do that. The reason is that Alfresco Event API uses ActiveMQ Topic behind the scene.
 
