@@ -33,12 +33,7 @@ services:
                 -Ddb.username=alfresco
                 -Ddb.password=alfresco
                 -Ddb.url=jdbc:postgresql://postgres:5432/alfresco
-                -Dsolr.host=solr6
-                -Dsolr.port=8983
-                -Dsolr.http.connection.timeout=1000
-                -Dsolr.secureComms=none
-                -Dsolr.base.url=/solr
-                -Dindex.subsystem.name=solr6
+                -Dindex.subsystem.name=noindex
                 -Dshare.host=127.0.0.1
                 -Dshare.port=8080
                 -Dalfresco.host=localhost
