@@ -49,6 +49,7 @@ services:
                 -DlocalTransform.core-aio.url=http://transform-core-aio:8090/
                 -Dcsrf.filter.enabled=false
                 -XX:MinRAMPercentage=50 -XX:MaxRAMPercentage=80
+                -Drepo.event2.topic.endpoint=amqp:topic:VirtualTopic.FOO
                 "
 
   transform-core-aio:
