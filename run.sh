@@ -24,7 +24,7 @@ tail() {
 }
 
 start_sample() {
-    docker-compose up --build -d alf-virtual-topic-event-handlers
+    docker-compose up --build -d alf-virtual-topic-event-handlers --scale alf-virtual-topic-event-handlers=2
 }
 
 stop_sample() {
