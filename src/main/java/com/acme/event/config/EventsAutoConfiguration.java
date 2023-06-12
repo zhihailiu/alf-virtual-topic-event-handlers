@@ -67,7 +67,7 @@ public class EventsAutoConfiguration {
 	 */
 	@Bean
 	@Primary
-	public IntegrationFlow acsEventsListeningFlow(final ActiveMQConnectionFactory activeMQConnectionFactory) {
+	public IntegrationFlow acsEventsListeningFlow2(final ActiveMQConnectionFactory activeMQConnectionFactory) {
 		return IntegrationFlows
 				.from(Jms
 						.messageDrivenChannelAdapter(activeMQConnectionFactory).destination(
