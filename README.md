@@ -107,5 +107,13 @@ $ ./run.sh stop
 If you want to rebuild and redeploy *only* the sample app:
 
 ```bash
-$ ./run.sh reload_sample
+$ ./run.sh reload_app
+```
+
+#### How To Test
+
+In run.sh, docker-compose "--scale" option starts two instances of this event handler application. Upload a document in Share and use "docker logs" to verify that only ONE of them captures the event like this:
+
+```
+A new node named sample.doc of type cm:content has been created!
 ```
