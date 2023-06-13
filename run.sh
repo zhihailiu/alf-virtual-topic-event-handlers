@@ -1,5 +1,7 @@
 #!/bin/sh
 
+APP_NAME="alf-virtual-topic-event-handlers"
+
 if [ -z "${M2_HOME}" ]; then
   export MVN_EXEC="mvn"
 else
@@ -7,7 +9,7 @@ else
 fi
 
 start() {
-    docker-compose up --build -d
+    docker-compose up --build -d --scale $APP_NAME=2
 }
 
 down() {
@@ -15,7 +17,7 @@ down() {
 }
 
 build() {
-    docker rmi alf-virtual-topic-event-handlers:development
+    docker rmi $APP_NAME:development
     $MVN_EXEC clean package
 }
 
@@ -23,13 +25,13 @@ tail() {
     docker-compose logs -f
 }
 
-start_sample() {
-    docker-compose up --build -d alf-virtual-topic-event-handlers --scale alf-virtual-topic-event-handlers=2
+start_app() {
+    docker-compose up --build -d $APP_NAME
 }
 
-stop_sample() {
-    docker-compose kill alf-virtual-topic-event-handlers
-    yes | docker-compose rm -f alf-virtual-topic-event-handlers
+stop_app() {
+    docker-compose kill $APP_NAME
+    yes | docker-compose rm -f $APP_NAME
 }
 
 case "$1" in
@@ -39,10 +41,10 @@ case "$1" in
     start
     tail
     ;;
-  reload_sample)
-    stop_sample
+  reload_app)
+    stop_app
     build
-    start_sample
+    start_app
     tail
     ;;
   start)
@@ -56,5 +58,5 @@ case "$1" in
     tail
     ;;
   *)
-    echo "Usage: $0 {build_start|reload_sample|start|stop|tail}"
+    echo "Usage: $0 {build_start|reload_app|start|stop|tail}"
 esac
