@@ -16,6 +16,7 @@ services:
 
   alfresco:
     image: alfresco/alfresco-content-repository-community:7.1.0
+    container_name: alfresco
     mem_limit: 1500m
     environment:
       JAVA_TOOL_OPTIONS: "
@@ -48,7 +49,8 @@ services:
                 "
 
   transform-core-aio:
-    image: alfresco/alfresco-transform-core-aio:2.3.8
+    image: alfresco/alfresco-transform-core-aio:2.5.7
+    container_name: aio
     mem_limit: 1536m
     environment:
       JAVA_OPTS: " -XX:MinRAMPercentage=50 -XX:MaxRAMPercentage=80"
@@ -57,6 +59,7 @@ services:
 
   share:
     image: alfresco/alfresco-share:7.1.0.1
+    container_name: share
     mem_limit: 1g
     environment:
       REPO_HOST: "alfresco"
@@ -71,7 +74,8 @@ services:
                 "
 
   postgres:
-    image: postgres:13.1
+    image: postgres:13.3
+    container_name: postgres
     mem_limit: 512m
     environment:
       - POSTGRES_PASSWORD=alfresco
@@ -83,6 +87,7 @@ services:
 
   activemq:
     image: alfresco/alfresco-activemq:5.16.1
+    container_name: activemq
     mem_limit: 1g
     ports:
       - 8161:8161 # Web Console
@@ -92,9 +97,11 @@ services:
 
   content-app:
     image: alfresco/alfresco-content-app:master
+    container_name: content-app
 
   proxy:
     image: alfresco/alfresco-acs-nginx:3.1.0
+    container_name: proxy
     mem_limit: 128m
     environment:
       ADW_URL: http://content-app:8080
