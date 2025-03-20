@@ -2,9 +2,9 @@
 
 The "competing consumers" issue with Alfresco Java SDK Event API can be found [here](https://github.com/Alfresco/alfresco-java-sdk/issues/58).
 
-Let's say I create an application that generates a thumbnail after a PDF document is uploaded. I deploy three instances of the application for high availablity and better performance. Upon a PDF document upload, each of the three instances will receive an event to create thumbnail, while I only need one of them to do that. This is because Alfresco Event API uses ActiveMQ Topic behind the scene.
+Let's say I create an application that generates a thumbnail after a PDF document is uploaded. I deploy three instances of the application for high availability and better performance. Upon a PDF document upload, each of the three instances will receive an event to create thumbnail, while I only need one of them to do that. This is because Alfresco Event API uses ActiveMQ Topic behind the scene.
 
-This sample application demonstrates how to implement competing consumers using ActiveMQ Virutal Topic.
+This sample application demonstrates how to implement competing consumers using ActiveMQ Virtual Topic.
 
 - On Alfresco/ACS side
 
@@ -21,6 +21,7 @@ Consumer Queue of the Virtual Topic has the naming convention `Consumer.<consume
 * [Virtual Destinations](https://activemq.apache.org/virtual-destinations)
 * [Understanding Virtual Destinations in ActiveMQ with an Example](https://itnext.io/understanding-virtual-destinations-in-activemq-with-an-example-cc814e8613d7)
 * [How to Use Docker Compose to Run Multiple Instances of a Service in Development](https://pspdfkit.com/blog/2018/how-to-use-docker-compose-to-run-multiple-instances-of-a-service-in-development/)
+* [Alfresco TestContainers](https://github.com/aborroy/testcontainers-alfresco-oop)
   
 ## Usage
 
@@ -95,3 +96,11 @@ In run.sh, docker-compose "--scale" option starts two instances of this event ha
 ```
 A new node named sample.doc of type cm:content has been created!
 ```
+
+
+## Release Notes
+
+### 2025-03-20 0.0.3-SNAPSHOT
+- Add integration test with Alfresco TestContainers
+
+
